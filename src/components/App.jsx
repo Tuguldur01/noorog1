@@ -1,7 +1,4 @@
 import React from 'react';
-import Header from './Header.jsx';
-import Footer from './Footer.jsx';
-import Content from './Content.jsx';
 import {Link} from 'react-router';
 
 
@@ -9,10 +6,43 @@ export default class App extends React.Component {
   render() {
     return(
       <div>
-        <Link to="/"><span>Home</span></Link><br/>
-        <Link to="/header"><span>header</span></Link><br/>
-        <Link to="/content"><span>content</span></Link><br/>
-        <Link to="/footer"><span>footer</span></Link>
+        <nav className="navbar navbar-primary">
+						<div className="container">
+							<div className="navbar-header">
+								<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-primary">
+									<span className="sr-only">Toggle navigation</span>
+									<span className="icon-bar"></span>
+									<span className="icon-bar"></span>
+									<span className="icon-bar"></span>
+								</button>
+								<a className="navbar-brand" href="/">Primary Color</a>
+							</div>
+
+							<div className="collapse navbar-collapse" id="example-navbar-primary">
+								<ul className="nav navbar-nav navbar-right">
+									<li className="active">
+                      <Link to="/Content">
+  											             <i className="material-icons">explore</i>
+  											                        Content
+
+                      </Link>
+                  </li>
+                  <li className="active">
+                      <Link to="/profile">
+  											             <i className="material-icons">account_box</i>
+  											                        profile
+                      </Link>
+                  </li>
+                  <li className="active">
+                      <Link to="/Settings">
+  											             <i className="material-icons">announcement</i>
+  											                        Settings
+                      </Link>
+                  </li>
+								</ul>
+							</div>
+						</div>
+					</nav>
           {this.props.children}
       </div>
     )
