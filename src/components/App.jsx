@@ -6,6 +6,7 @@ export default class App extends React.Component {
   render() {
     return(
       <div>
+        
         <nav className="navbar navbar-primary">
 						<div className="container">
 							<div className="navbar-header">
@@ -34,9 +35,9 @@ export default class App extends React.Component {
                       </Link>
                   </li>
                   <li className="active">
-                      <Link to="/Settings">
+                      <Link to="/Css">
   											             <i className="material-icons">announcement</i>
-  											                        Settings
+  											                        Css
                       </Link>
                   </li>
 								</ul>

@@ -1,5 +1,10 @@
 import React from 'react';
+
 import request from 'superagent';
+
+import { Link } from 'react-router'
+
+
 export default class Content extends React.Component {
   constructor(props) {
     super(props);
@@ -28,13 +33,14 @@ export default class Content extends React.Component {
         <div key={article._id}>
           <h2>{article.caption}</h2>
           <p>{article.description}</p>
+          <Link >Дэлгэрэнгүй</Link>
         </div>
       );
     });
     return (
       <div>
-        <h2>{news}</h2>
+            {news}
       </div>
-    )
+          )
   }
 }
