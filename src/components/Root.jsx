@@ -4,7 +4,7 @@ export default class Root extends React.Component {
   render() {
     return(
       <div>
-        <h1>Landing page</h1>
+        <h1>Lanqding page</h1>
     </div>
     )
   }

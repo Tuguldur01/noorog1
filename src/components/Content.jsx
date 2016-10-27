@@ -1,8 +1,24 @@
 import React from 'react';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
+import {GridList, GridTile} from 'material-ui/GridList';
 
 import request from 'superagent';
 
 import { Link } from 'react-router'
+
+const styles = {
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+  },
+  gridList: {
+    width: 500,
+    height: 450,
+    overflowY: 'auto',
+  },
+};
 
 
 export default class Content extends React.Component {
@@ -28,12 +44,38 @@ export default class Content extends React.Component {
   }
 
   render() {
+    var imgUrl = 'http://lorempixel.com/1740/900'
+
     var news = this.state.articles.map(function (article) {
       return (
+
         <div key={article._id}>
-          <h2>{article.caption}</h2>
-          <p>{article.description}</p>
-          <Link >Дэлгэрэнгүй</Link>
+          <GridList
+        cellHeight={180}
+        style={styles.gridList}>
+
+          <Card>
+            <CardHeader
+              title="URL Avatar"
+              subtitle="Subtitle"
+              avatar={imgUrl}
+            />
+            <CardMedia
+              overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
+            >
+              <img src={imgUrl} />
+            </CardMedia>
+            <CardTitle title="{article.caption}" subtitle="Card subtitle" />
+            <CardText>
+              {article.description}
+            </CardText>
+            <CardActions>
+              <FlatButton label={<Link to="/post/1">Дэлгэрэнгүй</Link>} />
+              <FlatButton label="Action2" />
+            </CardActions>
+          </Card>
+        </GridList>
+
         </div>
       );
     });
@@ -42,5 +84,10 @@ export default class Content extends React.Component {
             {news}
       </div>
           )
+    return(
+      <div>
+        <Link to="/post/1">Дэлгэрэнгүй</Link>
+      </div>
+    )
   }
 }
