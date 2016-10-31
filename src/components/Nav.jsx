@@ -41,6 +41,7 @@ export default class Nav extends React.Component {
   }
   render() {
     return(
+      <div>
       <AppBar
         title={<span style={styles.title}>Negative Space Logo</span>}
         onTitleTouchTap={this.handleTouchTap}
@@ -48,9 +49,9 @@ export default class Nav extends React.Component {
 
           <ToolbarGroup>
 
-            <FlatButton label={<Link to='/profile'>Profile</Link>}/>
-            <FlatButton label={<Link to='/css'>css</Link>}/>
-            <FlatButton label={<Link to='/content'>Content</Link>}/>
+            <FlatButton label={<Link to="profile">Profile</Link>}/>
+            <FlatButton label={<Link to="css">css</Link>}/>
+            <FlatButton label={<Link to="content">Content</Link>}/>
             <IconMenu
               iconButtonElement={
                 <IconButton touch={true}>
@@ -65,6 +66,8 @@ export default class Nav extends React.Component {
           }
       >
     </AppBar>
+    {this.props.children}
+    </div>
     )
   }
 }

@@ -61,16 +61,16 @@ export default class Content extends React.Component {
               avatar={imgUrl}
             />
             <CardMedia
-              overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
+              overlay={<CardTitle title={article.caption} subtitle={article.description} />}
             >
               <img src={imgUrl} />
             </CardMedia>
-            <CardTitle title="{article.caption}" subtitle="Card subtitle" />
+            <CardTitle title={article.caption} subtitle={article.description} />
             <CardText>
               {article.description}
             </CardText>
             <CardActions>
-              <FlatButton label={<Link to="/post/1">Дэлгэрэнгүй</Link>} />
+              <FlatButton label={<Link to="post">Дэлгэрэнгүй</Link>} />
               <FlatButton label="Action2" />
             </CardActions>
           </Card>
@@ -84,10 +84,5 @@ export default class Content extends React.Component {
             {news}
       </div>
           )
-    return(
-      <div>
-        <Link to="/post/1">Дэлгэрэнгүй</Link>
-      </div>
-    )
   }
 }
