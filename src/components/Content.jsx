@@ -1,7 +1,7 @@
 import React from 'react';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-import {GridList, GridTile} from 'material-ui/GridList';
+import { GridList, GridTile } from 'material-ui/GridList';
 
 import request from 'superagent';
 
@@ -9,12 +9,11 @@ import { Link } from 'react-router'
 
 const styles = {
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-  },
+    width: 800,
+    margin: 'auto',
+ },
   gridList: {
-    width: 500,
+    width: 800,
     height: 450,
     overflowY: 'auto',
   },
@@ -44,25 +43,21 @@ export default class Content extends React.Component {
   }
 
   render() {
-    var imgUrl = 'http://lorempixel.com/1740/900'
+    var imgUrl = require("file!../image/NYV.jpg");
 
     var news = this.state.articles.map(function (article) {
       return (
 
-        <div key={article._id}>
-          <GridList
-        cellHeight={180}
-        style={styles.gridList}>
-
+        <div style={styles.root} key={article._id}>
           <Card>
             <CardHeader
               title="URL Avatar"
               subtitle="Subtitle"
               avatar={imgUrl}
-            />
+              />
             <CardMedia
               overlay={<CardTitle title={article.caption} subtitle={article.description} />}
-            >
+              >
               <img src={imgUrl} />
             </CardMedia>
             <CardTitle title={article.caption} subtitle={article.description} />
@@ -71,18 +66,15 @@ export default class Content extends React.Component {
             </CardText>
             <CardActions>
               <FlatButton label={<Link to={`/content/${article._id}`}>Дэлгэрэнгүй</Link>} />
-              <FlatButton label="Action2" />
             </CardActions>
           </Card>
-        </GridList>
-
         </div>
       );
     });
     return (
       <div>
-            {news}
+        {news}
       </div>
-          )
+    )
   }
 }
