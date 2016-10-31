@@ -6,29 +6,30 @@ import Nav from './components/Nav.jsx';
 import Home from './components/Root.jsx';
 import Content from './components/Content.jsx';
 import CSS from './components/Css.jsx';
-import profile from './components/Profile.jsx'
+import profile from './components/Profile.jsx';
+import ContentInfo from './components/ContentInfo.jsx';
+import NoMatch from './components/NoMatch.jsx';
 injectTapEventPlugin();
 
-
-
 export default class App extends React.Component {
-
-  componentDidMount() {
-
-  }
-
   render() {
+    const routes =
+      <Route component={Nav} path="/">
+        <IndexRoute component={Content} />
+        <Route component={Home} path="home" />
+        <Route component={Content} path="content" />
+        <Route component={ContentInfo} path="content/:articleId" />
+        <Route component={CSS} path="css" />
+        <Route component={profile} path="profile" />
+        <Route path="*" component={NoMatch} />
+      </Route>;
     return (
       <MuiThemeProvider>
-        <Router history={hashHistory}>
-          <Route component={Nav} path="/">
-            <IndexRoute component={Home} />
-            <Route component={Home} path="home" />
-            <Route component={Content} path="content" />
-            <Route component={CSS} path="css" />
-            <Route component={profile} path="profile" />
-          </Route>
-        </Router>
+          <div>
+            <Router history={hashHistory}>
+              {routes}
+            </Router>
+          </div>
       </MuiThemeProvider>
     )
   }

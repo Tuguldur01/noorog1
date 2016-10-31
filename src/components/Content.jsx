@@ -70,7 +70,7 @@ export default class Content extends React.Component {
               {article.description}
             </CardText>
             <CardActions>
-              <FlatButton label={<Link to="post">Дэлгэрэнгүй</Link>} />
+              <FlatButton label={<Link to={`/content/${article._id}`}>Дэлгэрэнгүй</Link>} />
               <FlatButton label="Action2" />
             </CardActions>
           </Card>
