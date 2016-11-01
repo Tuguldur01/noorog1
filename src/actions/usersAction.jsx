@@ -11,3 +11,24 @@ export function fetchUsers() {
             })
     }
 }
+
+export function loginUser(data) {
+    return function (dispatch) {
+        axios.post("http://blogapi-92244.onmodulus.net/api/authenticate", data, {
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        })
+            .then((response) => {
+                if (response.data.success == false) {
+                    dispatch({ type: "FETCH_AUTH_FULFILLED", payload: response.data })
+                }
+                else {
+                    dispatch({ type: "FETCH_AUTH_FULFILLED", payload: response.data })
+                }
+            })
+            .catch((err) => {
+                dispatch({ type: "FETCH_AUTH_REJECTED", payload: err })
+            })
+    }
+}

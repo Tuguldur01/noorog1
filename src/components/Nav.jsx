@@ -52,6 +52,7 @@ export default class Nav extends React.Component {
             <FlatButton label={<Link to="profile">Profile</Link>}/>
             <FlatButton label={<Link to="css">css</Link>}/>
             <FlatButton label={<Link to="content">Content</Link>}/>
+            <FlatButton label={<Link to="login">Log in</Link>}/>
             <IconMenu
               iconButtonElement={
                 <IconButton touch={true}>

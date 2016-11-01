@@ -2,6 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as usersAction from '../actions/usersAction.jsx';
 import { bindActionCreators } from 'redux';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import DatePicker from 'material-ui/DatePicker';
+import TextField from 'material-ui/TextField';
 
 function mapStateToProps(state) {
   return { users: state.users };
@@ -14,16 +19,74 @@ function mapDispatchToProps(dispatch) {
 export class login extends React.Component {
   constructor(props) {
     super(props);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.state = {
+      open: false,
+      email: '',
+      password: '',
+      loginInfo: {},
+    };
+
   }
-  componentWillMount() {
-    this.setState ({
-      users:this.props.actions.fetchUsers()
-    })
+  handleOpen() {
+    this.setState({ open: true });
   }
+  handleClose() {
+    this.setState({ open: false });
+  }
+  handleEmailChange(e) {
+    this.setState({ email: e.target.value });
+  }
+  handlePasswordChange(e) {
+    this.setState({ password: e.target.value });
+  }
+
+  handleLogin(e) {
+    var logindata = {};
+    logindata = { email: this.state.email, password: this.state.password };
+    this.setState({
+      loginInfo: this.props.actions.loginUser(logindata)
+    });
+      console.log(loginInfo);
+  }
+
   render() {
+    const actions = [
+      <FlatButton
+        label="Login"
+        primary={true}
+        keyboardFocused={true}
+        onTouchTap={this.handleClose}
+        />,
+      <FlatButton
+        label="Submit"
+        primary={true}
+        keyboardFocused={true}
+        onTouchTap={this.handleLogin}
+        />,
+    ];
     return (
       <div>
-        <h1></h1>
+        <RaisedButton label="Login" onTouchTap={this.handleOpen} />
+        <Dialog
+          title="Close"
+          actions={actions}
+          modal={false}
+          open={this.state.open}
+          onRequestClose={this.handleClose}
+          >
+          <TextField
+            hintText="Email" value={this.state.email} type="email" name="email" onChange={this.handleEmailChange}
+            /><br />
+          <br />
+          <TextField
+            hintText="Password" value={this.state.password} name="password" onChange={this.handlePasswordChange} type="password"
+            /><br />
+        </Dialog>
       </div>
     )
   }
