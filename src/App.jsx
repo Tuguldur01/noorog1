@@ -9,6 +9,9 @@ import CSS from './components/Css.jsx';
 import profile from './components/Profile.jsx';
 import ContentInfo from './components/ContentInfo.jsx';
 import NoMatch from './components/NoMatch.jsx';
+import login from './components/login.jsx';
+import {Provider} from 'react-redux';
+import store from './store.jsx';
 injectTapEventPlugin();
 
 export default class App extends React.Component {
@@ -21,9 +24,11 @@ export default class App extends React.Component {
         <Route component={ContentInfo} path="content/:articleId" />
         <Route component={CSS} path="css" />
         <Route component={profile} path="profile" />
+        <Route component={login} path="login" />
         <Route path="*" component={NoMatch} />
       </Route>;
     return (
+      <Provider store={store}>
       <MuiThemeProvider>
           <div>
             <Router history={hashHistory}>
@@ -31,6 +36,7 @@ export default class App extends React.Component {
             </Router>
           </div>
       </MuiThemeProvider>
+      </Provider>
     )
   }
 }
