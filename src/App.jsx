@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Router, Route, IndexRoute, hashHistory } from 'react-router';
+import { Link, Router, Route,browserHistory, IndexRoute, hashHistory } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Nav from './components/Nav.jsx';
@@ -9,7 +9,7 @@ import CSS from './components/Css.jsx';
 import profile from './components/Profile.jsx';
 import ContentInfo from './components/ContentInfo.jsx';
 import NoMatch from './components/NoMatch.jsx';
-import login from './components/login.jsx';
+import login from './components/Login.jsx';
 import {Provider} from 'react-redux';
 import store from './store.jsx';
 injectTapEventPlugin();

@@ -9,16 +9,4 @@ import Profile from './src/components/Profile.jsx';
 import Css from './src/components/Css.jsx';
 import Post from './src/components/Post.jsx';
 
-
-ReactDOM.render((
-  <Router history = {browserHistory}>
-     <Route path = "/" component = {App}>
-        <IndexRoute component = {Root} />
-        <Route path = "profile" component = {Profile} />
-        <Route path = "css" component = {Css} />
-        <Route path = "content" component = {Content} />
-        <Route path = "footer" component = {Footer} />
-        <Route path = "post/1" component = {Post} />
-     </Route>
-  </Router>
-), document.getElementById('app'))
+ReactDOM.render(<App/>, document.getElementById('app'))
