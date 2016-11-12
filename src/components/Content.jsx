@@ -27,82 +27,42 @@ export class Content extends React.Component {
     render() {
         var imgUrl = require("file!../image/NYV.jpg");
         var avatar = require("file!../assets/img/kendall.jpg");
-
+        var postImg = require("file!../assets/img/lifestyle-2.jpg");
         var response = this.props.articles;
         if (this.props.articles.articles) {
-            var news = this.props.articles.articles.map(function(article) {
+            var news = this.props.articles.articles.map(function (article) {
                 return (
-                    <div className="col-md-4 col-sm-6" key={article._id}>
-                        <div className="card-container" >
-                            <div className="card">
-                                <div className="front">
-                                    <div className="cover">
-                                        <img src={imgUrl} />
-                                    </div>
-                                    <div className="user">
-                                        <img className="img-circle" src={avatar} />
-                                    </div>
-                                    <div className="content">
-                                        <div className="main">
-                                            <h3 className="name">{article.caption}</h3>
-                                            <p className="profession">{article.createdDate}</p>
-                                            <p className="text-center">{article.description}</p>
-                                        </div>
-                                        <div className="footer">
-                                            <div className="rating">
-                                                <i className="fa fa-mail-forward" /> Auto Rotation
-                </div>
-                                        </div>
-                                    </div>
+                    <div className="card-box col-md-4 col-sm-6" key={article._id}>
+                        <div className="news-card" data-background="image" data-src={postImg}>
+                            <div className="header">
+                                <div className="category">
+                                    <h6 className="label label-warning">Trending Post</h6>
                                 </div>
-                                <div className="back">
-                                    <div className="header">
-                                        <h5 className="motto"><button className="btn btn-success">{<Link to={`/content/${article._id}`}>Дэлгэрэнгүй</Link>}</button></h5>
-                                    </div>
-                                    <div className="content">
-                                        <div className="main">
-                                            <h4 className="text-center">Job Description</h4>
-                                            <p className="text-center">Web design, Adobe Photoshop, HTML5, CSS3, Corel and many others...</p>
-                                            <div className="stats-container">
-                                                <div className="stats">
-                                                    <h4>235</h4>
-                                                    <p>
-                                                        Followers
-                    </p>
-                                                </div>
-                                                <div className="stats">
-                                                    <h4>114</h4>
-                                                    <p>
-                                                        Following
-                    </p>
-                                                </div>
-                                                <div className="stats">
-                                                    <h4>35</h4>
-                                                    <p>
-                                                        Projects
-                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="footer">
-                                        <div className="social-links text-center">
-                                            <a href="/" className="facebook"><i className="fa fa-facebook fa-fw" /></a>
-                                            <a href="/" className="google"><i className="fa fa-google-plus fa-fw" /></a>
-                                            <a href="/" className="twitter"><i className="fa fa-twitter fa-fw" /></a>
-                                        </div>
-                                    </div>
+                                <div className="social-line" data-buttons={3}>
+                                    <button className="btn btn-social btn-facebook">
+                                        <i className="fa fa-facebook-square" /> Share
+                                    </button>
+                                    <button className="btn btn-social btn-twitter">
+                                        <i className="fa fa-twitter" /> Tweet
+                                      </button>
+                                    <button className="btn btn-social btn-pinterest">
+                                        <i className="fa fa-pinterest" /> Pin
+                                    </button>
                                 </div>
                             </div>
+                            <div className="content">
+                                <h4 className="title">{<Link to={`/content/${article._id}`}>{article.caption}</Link>}</h4>
+                                <p className="description">{article.description}</p>
+                            </div>
+                            <div className="filter" />
                         </div>
                     </div>
-
                 );
             });
         }
         return (
-            <div className="row">
-                <div className="col-sm-10 col-sm-offset-1">
+            <div className="masonry-container">
+                <div className="row">
                     {news}
                 </div>
             </div>
