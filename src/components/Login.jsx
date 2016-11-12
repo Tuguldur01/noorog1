@@ -15,7 +15,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return { actions: bindActionCreators(usersAction, dispatch) };
 }
-
 export class login extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +27,6 @@ export class login extends React.Component {
       open: false,
       email: '',
       password: '',
-      loginInfo: {},
     };
 
   }
@@ -48,10 +46,19 @@ export class login extends React.Component {
   handleLogin(e) {
     var logindata = {};
     logindata = { email: this.state.email, password: this.state.password };
-    this.setState({
-      loginInfo: this.props.actions.loginUser(logindata)
-    });
-      console.log(loginInfo);
+    console.log(logindata);
+    this.props.actions.loginUser(JSON.stringify(logindata));
+  }
+  componentWillReceiveProps(newProps) {
+    if (newProps.users.loginData) {
+      if (newProps.users.loginData.success == false) {
+        alert(newProps.users.loginData.message);
+        this.handleClose();
+      }
+      else {
+        console.log('amjilttai');
+      }
+    }
   }
 
   render() {
