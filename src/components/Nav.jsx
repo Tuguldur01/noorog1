@@ -1,74 +1,116 @@
 import React from 'react';
-import {Link} from 'react-router';
-
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
-import {AppBar, Tabs, Tab} from 'material-ui';
-import FontIcon from 'material-ui/FontIcon';
-import IconMenu from 'material-ui/IconMenu';
-import IconButton from 'material-ui/IconButton';
-import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
-import MenuItem from 'material-ui/MenuItem';
-
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
-import FlatButton from 'material-ui/FlatButton';
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
-
-
-const styles = {
-  title: {
-    cursor: 'pointer',
-  },
-};
-
-const myTabs = (
-  <Tabs>
-    <Tab label="Content" />
-    <Tab label="item 2" />
-    <Tab label="item 2" />
-  </Tabs>
-);
+import ReactDom from 'react-dom';
+import { Link } from 'react-router';
+import Footer from './Footer.jsx';
 
 export default class Nav extends React.Component {
-  constructor() {
-  super();
+    constructor() {
+        super();
+    }
 
-  this.handleTouchTap = this.handleTouchTap.bind(this);
-  }
-  handleTouchTap() {
-    window.location="/"
-  }
-  render() {
-    return(
-      <div>
-      <AppBar
-        title={<span style={styles.title}>Negative Space Logo</span>}
-        onTitleTouchTap={this.handleTouchTap}
-        iconElementRight={
+    componentDidMount() {
+        window.addEventListener('scroll', this.handleScroll);
+    }
 
-          <ToolbarGroup>
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
 
-            <FlatButton label={<Link to="profile">Profile</Link>}/>
-            <FlatButton label={<Link to="css">css</Link>}/>
-            <FlatButton label={<Link to="content">Content</Link>}/>
-            <FlatButton label={<Link to="login">Log in</Link>}/>
-            <IconMenu
-              iconButtonElement={
-                <IconButton touch={true}>
-                  <NavigationExpandMoreIcon />
-                </IconButton>
-              }
-            >
-              <MenuItem primaryText="Download" />
-              <MenuItem primaryText="More Info" />
-            </IconMenu>
-          </ToolbarGroup>
-          }
-      >
-    </AppBar>
-    {this.props.children}
-    </div>
-    )
-  }
+    handleScroll(event) {
+        if ($(document).scrollTop() > 260) {
+            if (transparent) {
+                transparent = false;
+                $('.navbar-color-on-scroll').removeClass('navbar-transparent');
+            }
+        } else {
+            if (!transparent) {
+                transparent = true;
+                $('.navbar-color-on-scroll').addClass('navbar-transparent');
+            }
+        }
+    }
+    render() {
+        var imgUrl = require("file!../assets/img/logo.png");
+        var backImg = require("file!../assets/img/city.jpg");
+        var devStyle = {
+            backgroundImage: 'url(' + backImg + ')'
+        }
+        return (
+            <div className="index-page">
+                <nav className="navbar  navbar-color-on-scroll navbar-transparent  navbar-fixed-top">
+                    <div className="container">
+                        <div className="navbar-header">
+                            <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navigation-index">
+                                <span className="sr-only">Toggle navigation</span>
+                                <span className="icon-bar" />
+                                <span className="icon-bar" />
+                                <span className="icon-bar" />
+                            </button>
+                            <a href="">
+                                <div className="logo-container">
+                                    <div className="logo">
+                                        <img src={imgUrl} alt="Creative Tim Logo" rel="tooltip" title="<b>TT team</b> hiiw <b> welcome </b>" data-placement="bottom" data-html="true" />
+                                    </div>
+                                    <div className="brand">
+                                        TT team
+                </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div className="collapse navbar-collapse" id="navigation-index">
+                            <ul className="nav navbar-nav navbar-right">
+                                <li>
+                                    <Link to="/profile" className="btn">
+                                        <i className="material-icons">dashboard</i> Profile
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/content" className="btn">
+                                        <i className="material-icons">cloud_download</i> News
+                                     </Link>
+                                </li>
+                                <li>
+                                    <a rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="/" className="btn btn-simple">
+                                        <i className="fa fa-twitter" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="/" className="btn btn-simple">
+                                        <i className="fa fa-facebook-square" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="/" className="btn btn-simple">
+                                        <i className="fa fa-instagram" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <div className="wrapper">
+                    <div className="header header-filter" style={devStyle} >
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-md-8 col-md-offset-2">
+                                    <div className="brand">
+                                        <h1>News Blog</h1>
+                                        <h3>A Badass Bootstrap UI Kit based on Material Design.</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="main main-raised">
+                        <div className="section section-basic">
+                            <div className="container">
+                                {this.props.children}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <Footer />
+            </div >
+        )
+    }
 }

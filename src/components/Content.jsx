@@ -1,79 +1,72 @@
 import React from 'react';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
 import { GridList, GridTile } from 'material-ui/GridList';
 import { connect } from 'react-redux';
 import * as articlesAction from '../actions/articlesAction.jsx';
 import { bindActionCreators } from 'redux';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
 function mapStateToProps(state) {
-  return { articles: state.articles };
+    return { articles: state.articles };
 }
 
 function mapDispatchToProps(dispatch) {
-  return { actions: bindActionCreators(articlesAction, dispatch) };
+    return { actions: bindActionCreators(articlesAction, dispatch) };
 }
 
 
-const styles = {
-  root: {
-    width: 800,
-    margin: 'auto',
-  },
-  gridList: {
-    width: 800,
-    height: 450,
-    overflowY: 'auto',
-  },
-};
-
-
 export class Content extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentWillMount() {
-    this.setState({
-      articles: this.props.actions.fetchArticles()
-    })
-  }
-
-  render() {
-    var imgUrl = require("file!../image/NYV.jpg");
-    var response = this.props.articles;
-    if (this.props.articles.articles) {
-      var news = this.props.articles.articles.map(function (article) {
-        return (
-          <div style={styles.root} key={article._id}>
-            <Card>
-              <CardHeader
-                title="URL Avatar"
-                subtitle="Subtitle"
-                avatar={imgUrl}
-                />
-              <CardMedia
-                overlay={<CardTitle title={article.caption} subtitle={article.description} />}
-                >
-                <img src={imgUrl} />
-              </CardMedia>
-              <CardTitle title={article.caption} subtitle={article.description} />
-              <CardText>
-                {article.description}
-              </CardText>
-              <CardActions>
-                <FlatButton label={<Link to={`/content/${article._id}`}>Дэлгэрэнгүй</Link>} />
-              </CardActions>
-            </Card>
-          </div>
-        );
-      });
+    constructor(props) {
+        super(props);
     }
-    return (
-      <div>
-        {news}
-      </div>
-    )
-  }
+
+    componentWillMount() {
+        this.setState({
+            articles: this.props.actions.fetchArticles()
+        })
+    }
+
+    render() {
+        var imgUrl = require("file!../image/NYV.jpg");
+        var avatar = require("file!../assets/img/kendall.jpg");
+        var postImg = require("file!../assets/img/lifestyle-2.jpg");
+        var response = this.props.articles;
+        if (this.props.articles.articles) {
+            var news = this.props.articles.articles.map(function (article) {
+                return (
+                    <div className="card-box col-md-4 col-sm-6" key={article._id}>
+                        <div className="news-card" data-background="image" data-src={postImg}>
+                            <div className="header">
+                                <div className="category">
+                                    <h6 className="label label-warning">Trending Post</h6>
+                                </div>
+                                <div className="social-line" data-buttons={3}>
+                                    <button className="btn btn-social btn-facebook">
+                                        <i className="fa fa-facebook-square" /> Share
+                                    </button>
+                                    <button className="btn btn-social btn-twitter">
+                                        <i className="fa fa-twitter" /> Tweet
+                                      </button>
+                                    <button className="btn btn-social btn-pinterest">
+                                        <i className="fa fa-pinterest" /> Pin
+                                    </button>
+                                </div>
+                            </div>
+                            <div className="content">
+                                <h4 className="title">{<Link to={`/content/${article._id}`}>{article.caption}</Link>}</h4>
+                                <p className="description">{article.description}</p>
+                            </div>
+                            <div className="filter" />
+                        </div>
+                    </div>
+                );
+            });
+        }
+        return (
+            <div className="masonry-container">
+                <div className="row">
+                    {news}
+                </div>
+            </div>
+        )
+    }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Content)
