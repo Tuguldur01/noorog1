@@ -4,6 +4,7 @@ import React from 'react';
 export default class Profile extends React.Component {
 
 
+
   render() {
     var backImg = require("file!../assets/img/city.jpg");
     var devStyle = {

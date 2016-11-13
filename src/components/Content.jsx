@@ -19,6 +19,7 @@ export class Content extends React.Component {
     }
 
     componentWillMount() {
+
         this.setState({
             articles: this.props.actions.fetchArticles()
         })

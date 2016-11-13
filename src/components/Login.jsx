@@ -2,11 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as usersAction from '../actions/usersAction.jsx';
 import { bindActionCreators } from 'redux';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import DatePicker from 'material-ui/DatePicker';
-import TextField from 'material-ui/TextField';
+
 
 function mapStateToProps(state) {
   return { users: state.users };
@@ -62,38 +58,73 @@ export class login extends React.Component {
   }
 
   render() {
-    const actions = [
-      <FlatButton
-        label="Login"
-        primary={true}
-        keyboardFocused={true}
-        onTouchTap={this.handleClose}
-        />,
-      <FlatButton
-        label="Submit"
-        primary={true}
-        keyboardFocused={true}
-        onTouchTap={this.handleLogin}
-        />,
-    ];
+    var backImg = require("file!../assets/img/city.jpg");
+    var devStyle = {
+      backgroundImage: 'url(' + backImg + ')',
+      backgroundSize: 'cover',
+      backgroundPosition: 'top center'
+    }
     return (
-      <div>
-        <RaisedButton label="Login" onTouchTap={this.handleOpen} />
-        <Dialog
-          title="Close"
-          actions={actions}
-          modal={false}
-          open={this.state.open}
-          onRequestClose={this.handleClose}
-          >
-          <TextField
-            hintText="Email" value={this.state.email} type="email" name="email" onChange={this.handleEmailChange}
-            /><br />
-          <br />
-          <TextField
-            hintText="Password" value={this.state.password} name="password" onChange={this.handlePasswordChange} type="password"
-            /><br />
-        </Dialog>
+      <div className="signup-page">
+        <div className="wrapper">
+          <div className="header header-filter" style={devStyle}>
+            <div className="container">
+              <div className="row">
+                <div className="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                  <div className="card card-signup">
+                    <form className="form" method action>
+                      <div className="header header-primary text-center">
+                        <h4>Sign Up</h4>
+                        <div className="social-line">
+                          <a href="#pablo" className="btn btn-just-icon">
+                            <i className="fa fa-facebook-square" />
+                          </a>
+                          <a href="#pablo" className="btn btn-just-icon">
+                            <i className="fa fa-twitter" />
+                          </a>
+                          <a href="#pablo" className="btn btn-just-icon">
+                            <i className="fa fa-google-plus" />
+                          </a>
+                        </div>
+                      </div>
+                      <p className="text-divider">Or Be Classical</p>
+                      <div className="content">
+                        <div className="input-group">
+                          <span className="input-group-addon">
+                            <i className="material-icons">face</i>
+                          </span>
+                          <input type="text" className="form-control" placeholder="First Name..." />
+                        </div>
+                        <div className="input-group">
+                          <span className="input-group-addon">
+                            <i className="material-icons">email</i>
+                          </span>
+                          <input type="text" className="form-control" placeholder="Email..." />
+                        </div>
+                        <div className="input-group">
+                          <span className="input-group-addon">
+                            <i className="material-icons">lock_outline</i>
+                          </span>
+                          <input type="password" placeholder="Password..." className="form-control" />
+                        </div>
+                        {/* If you want to add a checkbox to this form, uncomment this code
+
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" name="optionsCheckboxes" checked>
+											Subscribe to newsletter
+										</label>
+									</div> */}
+                      </div>
+                      <div className="footer text-center">
+                        <a href="#pablo" className="btn btn-primary btn-wd btn-lg">Get Started</a>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div></div>
       </div>
     )
   }

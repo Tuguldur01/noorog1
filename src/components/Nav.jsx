@@ -31,10 +31,7 @@ export default class Nav extends React.Component {
     }
     render() {
         var imgUrl = require("file!../assets/img/logo.png");
-        var backImg = require("file!../assets/img/city.jpg");
-        var devStyle = {
-            backgroundImage: 'url(' + backImg + ')'
-        }
+
         return (
             <div className="index-page">
                 <nav className="navbar  navbar-color-on-scroll navbar-transparent  navbar-fixed-top">
@@ -67,6 +64,11 @@ export default class Nav extends React.Component {
                                 <li>
                                     <Link to="/content" className="btn">
                                         <i className="material-icons">cloud_download</i> News
+                                     </Link>
+                                </li>
+                                <li>
+                                    <Link to="/login" className="btn">
+                                        <i className="material-icons">person</i> Login
                                      </Link>
                                 </li>
                                 <li>
