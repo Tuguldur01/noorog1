@@ -18,7 +18,7 @@ export class Content extends React.Component {
     constructor(props) {
         super(props);
     }
-  
+
     componentWillMount() {
 
         this.setState({
@@ -29,7 +29,7 @@ export class Content extends React.Component {
     render() {
         var backImg = require("file!../assets/img/city.jpg");
         var devStyle = {
-            backgroundImage: 'url(' + backImg + ')'
+            backgroundImage: 'url(' + backImg + ')',
         }
         var imgUrl = require("file!../image/NYV.jpg");
         var avatar = require("file!../assets/img/kendall.jpg");
@@ -39,29 +39,30 @@ export class Content extends React.Component {
             var news = this.props.articles.articles.map(function (article) {
                 return (
                     <div className="card-box col-md-4 col-sm-6" key={article._id}>
-                        <div className="news-card" data-background="image" data-src={postImg}>
-                            <div className="header">
-                                <div className="category">
-                                    <h6 className="label label-warning">Trending Post</h6>
-                                </div>
-                                <div className="social-line" data-buttons={3}>
+                        <div className="news-card" >
+                            <div className="header" style={{backgroundImage: 'url('+ require("file!../assets/img/lifestyle-2.jpg")+ ')', backgroundPosition: 'center center', backgroundSize: 'cover'}} >
+                                <img src={postImg} />
+                                <div className="social-line social-line-visible" data-buttons={4}>
                                     <button className="btn btn-social btn-facebook">
-                                        <i className="fa fa-facebook-square" /> Share
+                                        <i className="fa fa-facebook" />
                                     </button>
                                     <button className="btn btn-social btn-twitter">
-                                        <i className="fa fa-twitter" /> Tweet
-                                      </button>
+                                        <i className="fa fa-twitter" />
+                                    </button>
                                     <button className="btn btn-social btn-pinterest">
-                                        <i className="fa fa-pinterest" /> Pin
+                                        <i className="fa fa-pinterest" />
+                                    </button>
+                                    <button className="btn btn-social btn-google">
+                                        <i className="fa fa-google-plus" />
                                     </button>
                                 </div>
                             </div>
                             <div className="content">
-                                <h4 className="title">{<Link to={`/content/${article._id}`}>{article.caption}</Link>}</h4>
+                                <h6 className="category">News</h6>
+                                <h4 ><Link to={`/content/${article._id}`} className="title"> {article.caption} </Link></h4>
                                 <p className="description">{article.description}</p>
                             </div>
-                            <div className="filter" />
-                        </div>
+                        </div> {/* end card */}
                     </div>
                 );
             });

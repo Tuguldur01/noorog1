@@ -57,15 +57,16 @@ export default class Nav extends React.Component {
                         <div className="collapse navbar-collapse" id="navigation-index">
                             <ul className="nav navbar-nav navbar-right">
                                 <li>
-                                    <Link to="/profile" className="btn">
-                                        <i className="material-icons">dashboard</i> Profile
-                                    </Link>
-                                </li>
-                                <li>
                                     <Link to="/content" className="btn">
                                         <i className="material-icons">cloud_download</i> News
                                      </Link>
                                 </li>
+                                <li>
+                                    <Link to="/profile" className="btn">
+                                        <i className="material-icons">dashboard</i> Profile
+                                    </Link>
+                                </li>
+
                                 <li>
                                     <Link to="/login" className="btn">
                                         <i className="material-icons">person</i> Login

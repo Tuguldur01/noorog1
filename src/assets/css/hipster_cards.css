@@ -492,6 +492,7 @@
   height: 200px;
   z-index: 3;
 }
+
 .news-card .header img {
   opacity: 0;
   filter: alpha(opacity=0);
