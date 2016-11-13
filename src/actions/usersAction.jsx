@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import qs from 'qs';
 export function fetchUsers() {
     return function (dispatch) {
         axios.get("http://rest.learncode.academy/api/wstern/users")
@@ -12,10 +12,11 @@ export function fetchUsers() {
     }
 }
 
-export function loginUser(data) {
+export function loginUser(email, password) {
     return function (dispatch) {
-        axios.post("http://blogapi-92244.onmodulus.net/api/authenticate", {email: data.email, password: data.password}, {
+        axios.post("http://blogapi-92244.onmodulus.net/api/authenticate", qs.stringify({ email: email, password: password }), {
             headers: {
+                'Accept': 'application/json',
                 "Content-Type": "application/x-www-form-urlencoded"
             }
         })
@@ -24,6 +25,6 @@ export function loginUser(data) {
             })
             .catch((err) => {
                 dispatch({ type: "FETCH_AUTH_REJECTED", payload: err })
-            })  
+            })
     }
 }

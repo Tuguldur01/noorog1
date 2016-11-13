@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as usersAction from '../actions/usersAction.jsx';
 import { bindActionCreators } from 'redux';
-
+import Store from '../store.jsx';
 
 function mapStateToProps(state) {
   return { users: state.users };
@@ -32,12 +32,11 @@ export class login extends React.Component {
   }
 
   handleLogin(e) {
-    var logindata = {};
-    logindata = { email: this.state.email, password: this.state.password };
-   var res =  this.props.actions.loginUser(JSON.stringify(logindata));
-   console.log(res);
+    this.props.actions.loginUser(this.state.email, this.state.password);
   }
-
+  ComponentWillMount(){
+    console.log('count',Store.listenerCount("change"));
+  }
   render() {
     var backImg = require("file!../assets/img/city.jpg");
     var devStyle = {
@@ -74,7 +73,7 @@ export class login extends React.Component {
                           <span className="input-group-addon">
                             <i className="material-icons">face</i>
                           </span>
-                          <input type="text" className="form-control"  placeholder="First Name..." />
+                          <input type="text" className="form-control" placeholder="First Name..." />
                         </div>
                         <div className="input-group">
                           <span className="input-group-addon">
@@ -86,19 +85,11 @@ export class login extends React.Component {
                           <span className="input-group-addon">
                             <i className="material-icons">lock_outline</i>
                           </span>
-                          <input type="password"  value={this.state.password} onChange={this.handlePasswordChange} placeholder="Password..." className="form-control" />
+                          <input type="password" value={this.state.password} onChange={this.handlePasswordChange} placeholder="Password..." className="form-control" />
                         </div>
-                        {/* If you want to add a checkbox to this form, uncomment this code
-
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" name="optionsCheckboxes" checked>
-											Subscribe to newsletter
-										</label>
-									</div> */}
                       </div>
                       <div className="footer text-center">
-                        <a  onClick={this.handleLogin} className="btn btn-primary btn-wd btn-lg">Login</a>
+                        <a onClick={this.handleLogin} className="btn btn-primary btn-wd btn-lg">Login</a>
                       </div>
                     </form>
                   </div>
