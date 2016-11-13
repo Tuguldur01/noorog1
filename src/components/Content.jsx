@@ -25,6 +25,10 @@ export class Content extends React.Component {
     }
 
     render() {
+        var backImg = require("file!../assets/img/city.jpg");
+        var devStyle = {
+            backgroundImage: 'url(' + backImg + ')'
+        }
         var imgUrl = require("file!../image/NYV.jpg");
         var avatar = require("file!../assets/img/kendall.jpg");
         var postImg = require("file!../assets/img/lifestyle-2.jpg");
@@ -61,11 +65,32 @@ export class Content extends React.Component {
             });
         }
         return (
-            <div className="masonry-container">
-                <div className="row">
-                    {news}
+            <div className="wrapper">
+                <div className="header header-filter" style={devStyle} >
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-8 col-md-offset-2">
+                                <div className="brand">
+                                    <h1>News Blog</h1>
+                                    <h3>A Badass Bootstrap UI Kit based on Material Design.</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="main main-raised">
+                    <div className="section section-basic">
+                        <div className="container">
+                            <div className="masonry-container">
+                                <div className="row">
+                                    {news}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         )
     }
 }

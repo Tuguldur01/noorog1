@@ -88,27 +88,7 @@ export default class Nav extends React.Component {
                         </div>
                     </div>
                 </nav>
-                <div className="wrapper">
-                    <div className="header header-filter" style={devStyle} >
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-md-8 col-md-offset-2">
-                                    <div className="brand">
-                                        <h1>News Blog</h1>
-                                        <h3>A Badass Bootstrap UI Kit based on Material Design.</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="main main-raised">
-                        <div className="section section-basic">
-                            <div className="container">
-                                {this.props.children}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {this.props.children}
                 <Footer />
             </div >
         )
