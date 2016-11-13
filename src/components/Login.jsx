@@ -17,20 +17,12 @@ export class login extends React.Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
-    this.handleOpen = this.handleOpen.bind(this);
-    this.handleClose = this.handleClose.bind(this);
     this.state = {
       open: false,
       email: '',
       password: '',
     };
 
-  }
-  handleOpen() {
-    this.setState({ open: true });
-  }
-  handleClose() {
-    this.setState({ open: false });
   }
   handleEmailChange(e) {
     this.setState({ email: e.target.value });
@@ -42,19 +34,8 @@ export class login extends React.Component {
   handleLogin(e) {
     var logindata = {};
     logindata = { email: this.state.email, password: this.state.password };
-    console.log(logindata);
-    this.props.actions.loginUser(JSON.stringify(logindata));
-  }
-  componentWillReceiveProps(newProps) {
-    if (newProps.users.loginData) {
-      if (newProps.users.loginData.success == false) {
-        alert(newProps.users.loginData.message);
-        this.handleClose();
-      }
-      else {
-        console.log('amjilttai');
-      }
-    }
+   var res =  this.props.actions.loginUser(JSON.stringify(logindata));
+   console.log(res);
   }
 
   render() {
@@ -93,19 +74,19 @@ export class login extends React.Component {
                           <span className="input-group-addon">
                             <i className="material-icons">face</i>
                           </span>
-                          <input type="text" className="form-control" placeholder="First Name..." />
+                          <input type="text" className="form-control"  placeholder="First Name..." />
                         </div>
                         <div className="input-group">
                           <span className="input-group-addon">
                             <i className="material-icons">email</i>
                           </span>
-                          <input type="text" className="form-control" placeholder="Email..." />
+                          <input type="text" value={this.state.email} onChange={this.handleEmailChange} className="form-control" placeholder="Email..." />
                         </div>
                         <div className="input-group">
                           <span className="input-group-addon">
                             <i className="material-icons">lock_outline</i>
                           </span>
-                          <input type="password" placeholder="Password..." className="form-control" />
+                          <input type="password"  value={this.state.password} onChange={this.handlePasswordChange} placeholder="Password..." className="form-control" />
                         </div>
                         {/* If you want to add a checkbox to this form, uncomment this code
 
@@ -117,7 +98,7 @@ export class login extends React.Component {
 									</div> */}
                       </div>
                       <div className="footer text-center">
-                        <a href="#pablo" className="btn btn-primary btn-wd btn-lg">Get Started</a>
+                        <a  onClick={this.handleLogin} className="btn btn-primary btn-wd btn-lg">Login</a>
                       </div>
                     </form>
                   </div>

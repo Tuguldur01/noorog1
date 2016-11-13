@@ -13,11 +13,12 @@ function mapDispatchToProps(dispatch) {
 }
 
 
+
 export class Content extends React.Component {
     constructor(props) {
         super(props);
     }
-
+  
     componentWillMount() {
 
         this.setState({

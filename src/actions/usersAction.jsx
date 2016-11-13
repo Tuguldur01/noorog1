@@ -14,7 +14,7 @@ export function fetchUsers() {
 
 export function loginUser(data) {
     return function (dispatch) {
-        axios.post("http://blogapi-92244.onmodulus.net/api/authenticate", JSON.stringify(data), {
+        axios.post("http://blogapi-92244.onmodulus.net/api/authenticate", {email: data.email, password: data.password}, {
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
             }
