@@ -12,6 +12,7 @@ function mapDispatchToProps(dispatch) {
   return { actions: bindActionCreators(usersAction, dispatch) };
 }
 export class login extends React.Component {
+
   constructor(props) {
     super(props);
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -24,6 +25,9 @@ export class login extends React.Component {
     };
 
   }
+
+
+
   handleEmailChange(e) {
     this.setState({ email: e.target.value });
   }
@@ -34,9 +38,7 @@ export class login extends React.Component {
   handleLogin(e) {
     this.props.actions.loginUser(this.state.email, this.state.password);
   }
-  ComponentWillMount(){
-    console.log('count',Store.listenerCount("change"));
-  }
+
   render() {
     var backImg = require("file!../assets/img/city.jpg");
     var devStyle = {
@@ -44,6 +46,7 @@ export class login extends React.Component {
       backgroundSize: 'cover',
       backgroundPosition: 'top center'
     }
+
     return (
       <div className="signup-page">
         <div className="wrapper">
