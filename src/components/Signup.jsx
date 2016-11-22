@@ -4,6 +4,7 @@ import * as usersAction from '../actions/usersAction.jsx';
 import { bindActionCreators } from 'redux';
 import Store from '../store.jsx';
 
+
 export class login extends React.Component {
 
   constructor(props) {
@@ -13,6 +14,7 @@ export class login extends React.Component {
     this.handleLogin = this.handleLogin.bind(this);
     this.state = {
       open: false,
+      name: '',
       email: '',
       password: '',
     };
@@ -29,7 +31,7 @@ export class login extends React.Component {
   }
 
   handleLogin(e) {
-    this.props.actions.loginUser(this.state.email, this.state.password);
+    // this.props.actions.loginUser(this.state.email, this.state.password);
   }
 
   render() {
@@ -50,7 +52,7 @@ export class login extends React.Component {
                   <div className="card card-signup">
                     <form className="form" method action>
                       <div className="header header-primary text-center">
-                        <h4>Sign In</h4>
+                        <h4>Sign Up</h4>
                         <div className="social-line">
                           <a href="#pablo" className="btn btn-just-icon">
                             <i className="fa fa-facebook-square" />
@@ -65,7 +67,12 @@ export class login extends React.Component {
                       </div>
                       <p className="text-divider">Or Be Classical</p>
                       <div className="content">
-                     
+                        <div className="input-group">
+                          <span className="input-group-addon">
+                            <i className="material-icons">face</i>
+                          </span>
+                          <input type="text" className="form-control" placeholder="First Name..." />
+                        </div>
                         <div className="input-group">
                           <span className="input-group-addon">
                             <i className="material-icons">email</i>
@@ -94,7 +101,7 @@ export class login extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return { user: state.user };
+  return { users: state.users };
 }
 
 function mapDispatchToProps(dispatch) {

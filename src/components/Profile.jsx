@@ -1,11 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as usersAction from '../actions/usersAction.jsx';
+import { bindActionCreators } from 'redux';
+import Store from '../store.jsx';
+import auth from './Auth.jsx';
 
 
-export default class Profile extends React.Component {
+export class Profile extends React.Component {
 
+  constructor() {
+    super();
+    this.state = {
+      userdata: ''
+    };
+  }
 
+  componentWillMount() {
+    this.props.actions.getUser(auth.getToken());
+  }
 
   render() {
+    const userdata = this.props.user.user;
+    console.log(userdata);
     var backImg = require("file!../assets/img/city.jpg");
     var devStyle = {
       backgroundImage: 'url(' + backImg + ')'
@@ -24,7 +40,7 @@ export default class Profile extends React.Component {
                     </div>
                     <div className="name">
                       <h3 className="title">Christian Louboutin</h3>
-                      <h6>Designer</h6>
+                      <h6></h6>
                     </div>
                   </div>
                 </div>
@@ -108,3 +124,13 @@ export default class Profile extends React.Component {
     );
   }
 };
+
+function mapStateToProps(state) {
+  return { user: state.user };
+}
+
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(usersAction, dispatch) };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

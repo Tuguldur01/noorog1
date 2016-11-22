@@ -1,28 +1,40 @@
 import {
-    browserHistory
+    hashHistory
 } from 'react-router';
-
+import {
+    CHECK_AUTH
+} from './authReducer';
 
 
 const initialState = [{
     fetching: false,
     fetched: false,
-    users: [],
-    loginData: {},
-    error: null
+    user: null,
+    error: null,
+    _jwt: null,
 }]
 
-export default function reducers(state = initialState, action) {
+export function authCheck(data) {
+    return {
+        type: 'CHECK_AUTH',
+        data
+    }
+}
+
+export default function user(state = initialState, action) {
     switch (action.type) {
-        case "FETCH_USERS_PENDING":
+        case "FETCH_AUTH_FULFILLED":
             {
-                return {
-                    state,
-                    fetching: true
+                if (action.payload.success == false) {
+                    console.log(action.payload.message);
+                } else {
+                    localStorage.setItem('token', action.payload.message.token);
+                    hashHistory.push('/');
                 }
+                return {}
                 break;
             }
-        case "FETCH_USERS_REJECTED":
+        case "FETCH_AUTH_REJECTED":
             {
                 return {
                     state,
@@ -31,33 +43,16 @@ export default function reducers(state = initialState, action) {
                 }
                 break;
             }
-        case "FETCH_USERS_FULFILLED":
+        case "FETCH_USER_GET":
             {
-                return {
-                    state,
-                    fetching: false,
-                    fetched: true,
-                    users: action.payload
-                }
+                return Object.assign({}, state, {
+                    user: action.payload
+                }) 
                 break;
             }
-        case "FETCH_AUTH_FULFILLED":
-            {
-                if (action.payload.success == false) {
-                    console.log(action.payload.message);
-                } else {
-                    localStorage.setItem('token', action.payload.message.token);
-                    browserHistory.push('/')
-                }
-                return {
-                    users: action.payload
-                }
-                break;
-            }
-        case "FETCH_AUTH_REJECTED":
+        case "FETCH_USER_GETREJECTED":
             {
                 return {
-                    state,
                     fetching: false,
                     error: action.payload
                 }

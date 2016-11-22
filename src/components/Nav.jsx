@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import { Link } from 'react-router';
 import Footer from './Footer.jsx';
-
+import auth from './Auth.jsx';
 export default class Nav extends React.Component {
     constructor() {
         super();
+        this.state = { loggedIn: auth.loggedIn() };
     }
 
     componentDidMount() {
@@ -29,9 +30,42 @@ export default class Nav extends React.Component {
             }
         }
     }
-    render() {
-        var imgUrl = require("file!../assets/img/logo.png");
 
+    isAuthenticated() {
+        if (auth.loggedIn()) {
+            return (
+                <ul className="nav navbar-nav navbar-right">
+                    <li>
+                        <Link to="/profile" className="btn">
+                            <i className="material-icons">dashboard</i> Profile
+                                    </Link>
+                    </li>
+                    <li>
+                        <Link to="/logout" className="btn">
+                            <i className="material-icons">person</i> Logout
+                                     </Link>
+                    </li>
+                </ul>
+            );
+        } else {
+            return (
+                <ul className="nav navbar-nav navbar-right">
+                    <li>
+                        <Link to="/login" className="btn">
+                            <i className="material-icons">person</i> Login
+                                     </Link>
+                    </li >
+                </ul>
+            );
+        }
+    }
+    render() {
+
+
+
+
+
+        var imgUrl = require("file!../assets/img/logo.png");
         return (
             <div className="index-page">
                 <nav className="navbar  navbar-color-on-scroll navbar-transparent  navbar-fixed-top">
@@ -55,23 +89,16 @@ export default class Nav extends React.Component {
                             </a>
                         </div>
                         <div className="collapse navbar-collapse" id="navigation-index">
+                            {this.isAuthenticated()}
                             <ul className="nav navbar-nav navbar-right">
+
                                 <li>
                                     <Link to="/content" className="btn">
                                         <i className="material-icons">cloud_download</i> News
                                      </Link>
                                 </li>
-                                <li>
-                                    <Link to="/profile" className="btn">
-                                        <i className="material-icons">dashboard</i> Profile
-                                    </Link>
-                                </li>
 
-                                <li>
-                                    <Link to="/login" className="btn">
-                                        <i className="material-icons">person</i> Login
-                                     </Link>
-                                </li>
+
                                 <li>
                                     <a rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="/" className="btn btn-simple">
                                         <i className="fa fa-twitter" />

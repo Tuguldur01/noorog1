@@ -12,14 +12,3 @@ export function fetchArticles() {
     }
 }
 
-export function fetchUsers() {
-    return function (dispatch) {
-        axios.get("https://api.github.com/users")
-            .then((response) => {
-                dispatch({ type: "FETCH_ARTICLES_FULFILLED", payload: response.data })
-            })
-            .catch((err) => {
-                dispatch({ type: "FETCH_ARTICES_REJECTED", payload: err })
-            })
-    }
-}
