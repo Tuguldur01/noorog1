@@ -4,13 +4,17 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+<<<<<<< HEAD
 var Comment = require('./model/comments')
+=======
+>>>>>>> 5a88520246291938171233a829a6c8d57a25619b
 //and create our instances
 var app = express();
 var router = express.Router();
 //set our port to either a predetermined port number if you have set
 //it up, or 3001
 var port = process.env.API_PORT || 3001;
+<<<<<<< HEAD
 // mongodb tei holboh
 mongoose.connect('mongodb://tugu11:emeeuvuubisaa3@ds111748.mlab.com:11748/mongo')
 
@@ -60,3 +64,5 @@ router.route('/comments')
 app.listen(port, function () {
   console.log(`API ${port} port deer ajillaj bn`);
 })
+=======
+>>>>>>> 5a88520246291938171233a829a6c8d57a25619b

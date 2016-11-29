@@ -14,7 +14,10 @@ import { Provider } from 'react-redux';
 import Footer from './components/Footer.jsx';
 import Logout from './components/Logout.jsx';
 import auth from './components/Auth.jsx';
+<<<<<<< HEAD
 import Comment from './components/Comment';
+=======
+>>>>>>> 5a88520246291938171233a829a6c8d57a25619b
 import store from './store.jsx';
 function requireAuth(nextState, replace) {
   if (!auth.loggedIn()) {
@@ -31,7 +34,10 @@ export default class App extends React.Component {
       <Route component={Nav} path="/">
         <IndexRoute component={Content} />
         <Route component={Home} path="home" />
+<<<<<<< HEAD
         <Route component={Comment} path="comment" />
+=======
+>>>>>>> 5a88520246291938171233a829a6c8d57a25619b
         <Route component={Content} path="content" />
         <Route component={ContentInfo} path="content/:articleId" />
         <Route component={CSS} path="css" />

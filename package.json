@@ -4,8 +4,12 @@
   "description": "tuguldur tugsbileg. anyone can join",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "start": "webpack-dev-server --hot",
     "start-dev": "nf start -p 3000"
+=======
+    "start": "webpack-dev-server --hot"
+>>>>>>> 5a88520246291938171233a829a6c8d57a25619b
   },
   "repository": {
     "type": "git",
@@ -18,7 +22,11 @@
   },
   "homepage": "https://github.com/Tuguldur01/noorog1#readme",
   "dependencies": {
+<<<<<<< HEAD
     "axios": "^0.15.3",
+=======
+    "axios": "^0.15.2",
+>>>>>>> 5a88520246291938171233a829a6c8d57a25619b
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
     "babel-plugin-transform-decorators": "^6.13.0",
@@ -33,7 +41,11 @@
     "history": "^1.17.0",
     "marked": "^0.3.6",
     "material-ui": "^0.15.0",
+<<<<<<< HEAD
     "mongoose": "^4.7.0",
+=======
+    "mongoose": "^4.6.7",
+>>>>>>> 5a88520246291938171233a829a6c8d57a25619b
     "nodemon": "^1.11.0",
     "qs": "^6.3.0",
     "react": "^15.3.2",
