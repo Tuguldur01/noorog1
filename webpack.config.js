@@ -8,7 +8,11 @@ var config = {
 
     devServer: {
         inline: true,
+<<<<<<< HEAD
+        port: 3000
+=======
         port: 3030
+>>>>>>> 5a88520246291938171233a829a6c8d57a25619b
     },
 
     module: {
@@ -34,4 +38,8 @@ var config = {
     }
 }
 
+<<<<<<< HEAD
 module.exports = config;
+=======
+module.exports = config;
+>>>>>>> 5a88520246291938171233a829a6c8d57a25619b

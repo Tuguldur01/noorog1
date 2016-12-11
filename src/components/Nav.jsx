@@ -97,7 +97,15 @@ export default class Nav extends React.Component {
                                         <i className="material-icons">cloud_download</i> News
                                      </Link>
                                 </li>
+<<<<<<< HEAD
+                                <li>
+                                    <Link to="/comment" className="btn">
+                                        <i className="material-icons">cloud_download</i> Comment
+                                     </Link>
+                                </li>
+=======
 
+>>>>>>> 5a88520246291938171233a829a6c8d57a25619b
 
                                 <li>
                                     <a rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="/" className="btn btn-simple">
