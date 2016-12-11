@@ -6,25 +6,38 @@ import Store from '../store.jsx';
 import auth from './Auth.jsx';
 
 
+function mapStateToProps(state) {
+  return { user: state.user };
+}
+
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(usersAction, dispatch) };
+}
+
 export class Profile extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {
-      userdata: ''
-    };
+  constructor(props) {
+    super(props);
   }
 
   componentWillMount() {
-    this.props.actions.getUser(auth.getToken());
+    this.setState = {
+      user: this.props.actions.getUser(auth.getToken())
+    };
   }
 
   render() {
-    const userdata = this.props.user.user;
-    console.log(userdata);
+
     var backImg = require("file!../assets/img/city.jpg");
     var devStyle = {
       backgroundImage: 'url(' + backImg + ')'
+    }
+    if(this.props.user.user){
+      var email = (
+        <div>
+          {this.props.user.user}
+        </div>
+      )
     }
     return (
       <div className="profile-page">
@@ -40,7 +53,9 @@ export class Profile extends React.Component {
                     </div>
                     <div className="name">
                       <h3 className="title">Christian Louboutin</h3>
-                      <h6></h6>
+                      <h6>
+                        {email}
+                      </h6>
                     </div>
                   </div>
                 </div>
@@ -117,20 +132,13 @@ export class Profile extends React.Component {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
+            </div >
+          </div >
+        </div >
+      </div >
     );
   }
 };
 
-function mapStateToProps(state) {
-  return { user: state.user };
-}
-
-function mapDispatchToProps(dispatch) {
-  return { actions: bindActionCreators(usersAction, dispatch) };
-}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
